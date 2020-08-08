@@ -6,11 +6,11 @@
 | nickname | string | null: false |
 | email    | string | null: false |
 | password | string | null: false |
-| family_name  | string      | null: false |
-| first_name   | string      | null: false |
-| family_kana  | string      | null: false |
-| first_kana   | string      | null: false |
-| birthday     | integer     | null: false |
+| family_name  | string   | null: false |
+| first_name   | string   | null: false |
+| family_kana  | string   | null: false |
+| first_kana   | string   | null: false |
+| birthday     | date     | null: false |
 ### Association
 - has_many :items
 - has_many :orders
