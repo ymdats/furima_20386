@@ -4,10 +4,10 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :nickname
-    validates :email, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/, message: 'メールアドレスを入れてください'}
-    validates :password, format: { with: /[a-zA-Z\d]{6,}/, message: '6文字以上の半角英数字混合で入力してください'}
-    validates :family_name, :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: '全角（漢字・ひらがな・カタカナ）で入力してください' }
-    validates :family_kana, :first_kana, format: { with: /\A[ァ-ン]+\z/, message: '全角（カタカナ）で入力してください' }
+    validates :email, uniqueness: { case_sensitive: true }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/}
+    validates :password, format: { with: /\A(?=.*?[a-zA-Z])(?=.*?\d)[a-zA-Z\d]{6,}\z/}
+    validates :family_name, :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/}
+    validates :family_kana, :first_kana, format: { with: /\A[ァ-ヶー－]+\z/}
     validates :birthday
   end
 end
