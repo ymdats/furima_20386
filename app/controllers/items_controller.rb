@@ -22,7 +22,6 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     redirect_to action: :index unless current_user.id == @item.user.id
     if @item.destroy
-      @item.destroy
       redirect_to action: :index
     else
       render :show
