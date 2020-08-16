@@ -38,14 +38,14 @@ RSpec.describe BuyAddress, type: :model do
         expect(@buy_address.errors.full_messages).to include("Phone number can't be blank")
       end
       it '郵便番号にハイフンが無いと保存できない' do
-        @buy_address.postal_code = "6740051"
+        @buy_address.postal_code = '6740051'
         @buy_address.valid?
-        expect(@buy_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@buy_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it '電話にハイフンを含むと保存できない' do
-        @buy_address.phone_number = "090-3470-2818"
+        @buy_address.phone_number = '090-3470-2818'
         @buy_address.valid?
-        expect(@buy_address.errors.full_messages).to include("Phone number is invalid. Not include hyphen(-)")
+        expect(@buy_address.errors.full_messages).to include('Phone number is invalid. Not include hyphen(-)')
       end
     end
   end
