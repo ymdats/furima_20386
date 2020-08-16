@@ -1,5 +1,6 @@
 class BuysController < ApplicationController
   before_action :set_item, only: [:index, :create]
+  before_action :move_to_index, only: [:index]
 
   def index
   end
@@ -16,6 +17,16 @@ class BuysController < ApplicationController
   end
 
   private
+  def move_to_index
+    if user_signed_in?
+      if current_user.id == @item.user.id || @item.buy.present?
+        redirect_to controller: :items, action: :index
+      end
+    elsif 
+      redirect_to new_user_session_path
+    end
+  end
+
   def buy_params
     params.permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number, :token).merge(user_id: @item.user_id, item_id: @item.id)
   end
