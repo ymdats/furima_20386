@@ -6,6 +6,7 @@ function price() {
   function value(e){
     tax.textContent = (e.target.value)*0.1;
     profit.textContent = (e.target.value)*0.9;
-  }
-}
+  };
+};
+
 window.addEventListener("load", price);
