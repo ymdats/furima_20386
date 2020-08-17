@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe BuyAddress, type: :model do
   describe '住所の保存' do
     before do
+      @seller = FactoryBot.build(:user)
+      @buyer =FactoryBot.build(:user)
       @buy_address = FactoryBot.build(:buy_address)
     end
 
