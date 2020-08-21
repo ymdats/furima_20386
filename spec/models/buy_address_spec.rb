@@ -3,17 +3,27 @@ require 'rails_helper'
 RSpec.describe BuyAddress, type: :model do
   describe '住所の保存' do
     before do
-      @seller = FactoryBot.build(:user)
-      @buyer =FactoryBot.build(:user)
+      # @buyer =FactoryBot.create(:user)
+      # @seller = FactoryBot.create(:user)
+      # @item = FactoryBot.create(:item)
+      # @item.user_id = @seller.id
       @buy_address = FactoryBot.build(:buy_address)
+      sleep 0.2
+      # @buy_address.user_id = @buyer.id
+      # @buy_address.item_id = @item.user_id
     end
 
-    context '住所が保存できる場合' do
-      it '全ての住所カラムが存在すれば保存される' do
-        expect(@buy_address).to be_valid
-      end
+    it '全ての値が正しく入力されていれば保存できる' do
+      # binding.pry
+      expect(@buy_address).to be_valid
     end
-    context '住所が保存できない場合' do
+
+    context '保存できない場合' do
+      it '商品のuser_idと購入者idが同じだと保存できない' do
+        @buy_address.user_id = @buy_address.seller_id
+        @buy_address.valid?
+        expect(@buy_address.errors.full_messages).to include("User must be other than #{@buy_address.user_id}")
+      end
       it '郵便番号が無いと保存できない' do
         @buy_address.postal_code = nil
         @buy_address.valid?
@@ -26,6 +36,7 @@ RSpec.describe BuyAddress, type: :model do
       end
       it '市区町村が無いと保存できない' do
         @buy_address.city = nil
+        # binding.pry
         @buy_address.valid?
         expect(@buy_address.errors.full_messages).to include("City can't be blank")
       end
