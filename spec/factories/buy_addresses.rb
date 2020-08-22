@@ -6,8 +6,10 @@ FactoryBot.define do
     house_number { '大久保町大窪3254' }
     building_name { 'クリスタルヴィラ' }
     phone_number { '09034702818' }
-    user_id {FactoryBot.create(:user).id}
-    seller_id {FactoryBot.create(:user).id}
-    item_id {FactoryBot.create(:item).id}
+    # user_id {FactoryBot.create(:user).id}
+    # seller_id {FactoryBot.create(:user).id}
+    # item_id {FactoryBot.create(:item).id}
+    association :user
+    association :item
   end
 end
